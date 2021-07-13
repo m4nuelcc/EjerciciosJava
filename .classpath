@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-15">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="02_Poo"/>
+	<classpathentry kind="src" path="03_graficos"/>
+	<classpathentry kind="src" path="01_ProgramacionBasica"/>
+	<classpathentry kind="src" path="04_Eventos"/>
+	<classpathentry kind="src" path="pruebas"/>
+	<classpathentry kind="src" path="05_Swing"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
