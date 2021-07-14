@@ -99,7 +99,7 @@ class Lamina extends JPanel {
 
 	private JLabel texto;
 
-	//private JRadioButton boton1, boton2, boton3, boton4;
+	// private JRadioButton boton1, boton2, boton3, boton4;
 	
 	private ButtonGroup migrupo;
 	
