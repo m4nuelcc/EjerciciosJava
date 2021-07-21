@@ -71,13 +71,11 @@ class LaminaMenu extends JPanel {
 
 		// ----------------creando submenu estilo-------------------------
 
+		configura_menu("Normal", "estilo", "", Font.PLAIN, 1);
+
 		configura_menu("Negrita", "estilo", "", Font.BOLD, 1);
 
 		configura_menu("Cursiva", "estilo", "", Font.ITALIC, 1);
-		
-		configura_menu("Romana", "estilo", "", Font.ROMAN_BASELINE, 1);
-		
-		
 
 		// ----------------creando submenu tamaño-------------------------
 		configura_menu("3", "tamagno", "", 1, 3);
@@ -160,8 +158,12 @@ class LaminaMenu extends JPanel {
 
 				tam = letras.getSize();
 
-			} else if (textoDelMenu == "Cursiva" || textoDelMenu == "Negrita"|| textoDelMenu=="Romana") {
+			} else if (textoDelMenu == "Cursiva" || textoDelMenu == "Negrita" || textoDelMenu == "Normal") {
 
+				if (letras.getStyle() == 1 || letras.getStyle() == 2) {
+
+					estilos = 3;
+				}
 				tipo_letra = letras.getFontName();
 
 				tam = letras.getSize();
