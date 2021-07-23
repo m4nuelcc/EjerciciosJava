@@ -53,7 +53,7 @@ class LaminaMenu extends JPanel {
 		JMenuItem copiar = new JMenuItem("Copiar");
 		JMenuItem pegar = new JMenuItem("Pegar");
 		edicion.add(cortar);
-		edicion.add(pegar);
+		edicion.add(copiar);
 		edicion.add(pegar);
 		edicion.addSeparator();
 		// Creacion de submenu de Edicion
