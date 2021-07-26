@@ -11,5 +11,6 @@
 	<classpathentry kind="src" path="04_Eventos"/>
 	<classpathentry kind="src" path="pruebas"/>
 	<classpathentry kind="src" path="05_Swing"/>
+	<classpathentry kind="src" path="06_Aplicaciones_Graficas"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
