@@ -1,6 +1,7 @@
 package VentanasBoton;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -103,6 +104,11 @@ class Lamina1 extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
+			
+			Lamina1 lamina1 = new Lamina1();
+			lamina1.setBackground(Color.BLUE);
+			
+			
 			String texto = texto1.getText();
 		    String texto3 = texto2.getText();
 
