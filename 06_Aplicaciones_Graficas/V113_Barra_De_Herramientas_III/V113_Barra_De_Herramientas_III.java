@@ -1,6 +1,7 @@
 package V113_Barra_De_Herramientas_III;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +42,7 @@ class MarcoMenu extends JFrame {
 
 	public MarcoMenu() {
 
-		setBounds(600, 300, 600, 300);
+		setBounds(600, 300, 300, 400);
 
 		setTitle("Menu");
 
@@ -84,13 +85,6 @@ class LaminaMenu extends JPanel {
 
 		// ----------------creando submenu estilo-------------------------
 
-//		configura_menu("Normal", "estilo", "", Font.PLAIN, 1,"05_Swing/V107_MenusConImagenes/cortar.gif");
-//
-//		configura_menu("Negrita", "estilo", "", Font.BOLD, 1,"05_Swing/V107_MenusConImagenes/pegar.gif");
-//
-//		configura_menu("Cursiva", "estilo", "", Font.ITALIC, 1,"05_Swing/V107_MenusConImagenes/copiar.gif");
-
-		// creacion checkBox
 
 		JCheckBoxMenuItem negrita = new JCheckBoxMenuItem("Negrita",
 				new ImageIcon("06_Aplicaciones_Graficas/V112_Barra_De_Herramientas_II/negrita.gif"));
@@ -120,19 +114,8 @@ class LaminaMenu extends JPanel {
 		estilo.add(subrayado);
 
 		// ----------------creando submenu tamaño-------------------------
-		/*
-		 * configura_menu("3", "tamagno", "", 1, 3, "");
-		 * 
-		 * configura_menu("12", "tamagno", "", 1, 12, "");
-		 * 
-		 * configura_menu("16", "tamagno", "", 1, 16, "");
-		 * 
-		 * configura_menu("18", "tamagno", "", 1, 18, "");
-		 * 
-		 * configura_menu("24", "tamagno", "", 1, 24, "");
-		 * 
-		 * configura_menu("28", "tamagno", "", 1, 28, "");
-		 */
+
+
 		ButtonGroup tamagnoLetra = new ButtonGroup();
 
 		JRadioButtonMenuItem doce = new JRadioButtonMenuItem("12");
@@ -186,31 +169,88 @@ class LaminaMenu extends JPanel {
 		JToolBar barra = new JToolBar();
 
 		JButton negritaBarra = new JButton(
-				new ImageIcon("06_Aplicaciones_Graficas/V112_Barra_De_Herramientas_II/negrita.gif"));
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/negrita.gif"));
 
 		barra.add(negritaBarra);
 
 		JButton cursivaBarra = new JButton(
-				new ImageIcon("06_Aplicaciones_Graficas/V112_Barra_De_Herramientas_II/cursiva.gif"));
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/cursiva.gif"));
 		
 		barra.add(cursivaBarra);
 
 		JButton subrayadoBarra = new JButton(
-				new ImageIcon("06_Aplicaciones_Graficas/V112_Barra_De_Herramientas_II/subrayado.gif"));
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/subrayado.gif"));
 		
 		barra.add(subrayadoBarra);
 		
+		JButton azulBarra = new JButton(
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/azul.gif"));
+		
+		barra.add(azulBarra);
+		
+		JButton amarillodoBarra = new JButton(
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/amarillo.gif"));
+		
+		barra.add(amarillodoBarra);
+		
+		JButton rojoBarra = new JButton(
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/rojo.gif"));
+		
+		barra.add(rojoBarra);
+		
+		JButton alin_izquierda_Barra = new JButton(
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/alin_izq.gif"));
+		
+		barra.add(alin_izquierda_Barra);
+		
+		JButton alin_derecha_Barra = new JButton(
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/alin_der.gif"));
+		
+		barra.add(alin_derecha_Barra);
+		
+		JButton alin_centro_Barra = new JButton(
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/alin_cent.gif"));
+		
+		barra.add(alin_centro_Barra);
+		
+		JButton alin_texto_Barra = new JButton(
+				new ImageIcon("06_Aplicaciones_Graficas/V113_Barra_De_Herramientas_III/alin_texto.gif"));
+		
+		barra.add(alin_texto_Barra);
+		
+		
+		//Acciones de Alineacion
+		
+		alin_izquierda_Barra.addActionListener(new StyledEditorKit.AlignmentAction("izquierda", 0));
 
+		alin_centro_Barra.addActionListener(new StyledEditorKit.AlignmentAction("centrado", 1));
+		
+		alin_derecha_Barra.addActionListener(new StyledEditorKit.AlignmentAction("derecha", 2));
+		
+		alin_texto_Barra.addActionListener(new StyledEditorKit.AlignmentAction("justificado", 3));
+	
+		//Acciones de Colores				
+		azulBarra.addActionListener(new StyledEditorKit.ForegroundAction("azul", Color.BLUE));
+
+		amarillodoBarra.addActionListener(new StyledEditorKit.ForegroundAction("amarilo", Color.YELLOW));
+
+		rojoBarra.addActionListener(new StyledEditorKit.ForegroundAction("rojo", Color.RED));
+		
+		
+
+		//Acciones de Estilos
 		negritaBarra.addActionListener(new StyledEditorKit.BoldAction());
 
 		cursivaBarra.addActionListener(new StyledEditorKit.ItalicAction());
 		
 		subrayadoBarra.addActionListener(new StyledEditorKit.UnderlineAction());
+		
 
 		barra.setOrientation(1); // pone barra vertical
 
 		add(barra, BorderLayout.WEST);
 
+		
 	}
 
 	// metodo para añadir mas opciones al menu
