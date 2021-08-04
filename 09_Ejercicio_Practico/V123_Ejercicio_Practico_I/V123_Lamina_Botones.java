@@ -3,6 +3,7 @@ package V123_Ejercicio_Practico_I;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -17,17 +18,20 @@ public class V123_Lamina_Botones extends JPanel {
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));  //distribuido vertical
 		
-		ButtonGroup grupo = new ButtonGroup();
+		grupo = new ButtonGroup();
 		
 		for(int i=0; i<opciones.length; i++) {
 			
 			JRadioButton bot =new JRadioButton(opciones[i]);
+			
+			bot.setActionCommand(opciones[i]);
 			
 			add(bot);
 			
 			grupo.add(bot);
 			
 			bot.setSelected(i==0);  //para que quede seleccionado el primer boton
+			
 			
 		}
 		
@@ -41,5 +45,17 @@ public class V123_Lamina_Botones extends JPanel {
 		
 	}
 	
+	public String dameSeleccion() {
+		
+//		ButtonModel miboton=grupo.getSelection(); // guardamos el boton seleccionado
+//		
+//		String s = miboton.getActionCommand(); //guardamos el valor que tiene el boton seleccionado
+//		
+//		return s;
+		
+		return grupo.getSelection().getActionCommand();
+	}
+	
+	private ButtonGroup grupo;  //encapsulado
 
 }
