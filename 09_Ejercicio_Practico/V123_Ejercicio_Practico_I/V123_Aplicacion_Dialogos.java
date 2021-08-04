@@ -7,8 +7,11 @@ public class V123_Aplicacion_Dialogos {
 
 	public static void main(String[] args) {
 	
+	V123_Marco_dialogos miMarco = new V123_Marco_dialogos();
 	
-
+	miMarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	miMarco.setVisible(true);
 	}
 
 }
