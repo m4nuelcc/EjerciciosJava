@@ -17,17 +17,19 @@ public class V123_Marco_dialogos extends JFrame {
 
 		setBounds(500, 300, 600, 450);
 
-		// lamina cruadricula 2x3
+		//	lamina_Cuadricula.setLayout(new GridLayout(2, 3));
+		
+		JPanel lamina_Cuadricula = new JPanel(new GridLayout(2, 3));
 
-		JPanel lamina_Cuadricula = new JPanel();
+		
 
-		lamina_Cuadricula.setLayout(new GridLayout(2, 3));
-
-		// instanciando radionButton
+		//creacion de las laminas con los radioButton y con bordes
 
 		String primero[] = { "Mensaje", "Confirmar", "Opcion", "Entrada" };
 
 		lamina_Tipo = new V123_Lamina_Botones("Tipo", primero);
+		
+	
 
 		String segundo[] = { "ERROR_MESSAGE", "INFORMATION_MESSAGE", "WARNING_MESSAGE", "QUESTION_MESSAGE",
 				"PLAIN_MESSAGE" };

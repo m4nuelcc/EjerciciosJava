@@ -1,5 +1,7 @@
 package V123_Ejercicio_Practico_I;
 
+import java.awt.Color;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -14,7 +16,8 @@ public class V123_Lamina_Botones extends JPanel {
 	
 	public V123_Lamina_Botones(String titulo, String[] opciones) {
 		
-		setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),titulo));
+		//setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),titulo));
+		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.RED),titulo));
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));  //distribuido vertical
 		
