@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class V123_Marco_dialogos extends JFrame {
@@ -17,19 +18,15 @@ public class V123_Marco_dialogos extends JFrame {
 
 		setBounds(500, 300, 600, 450);
 
-		//	lamina_Cuadricula.setLayout(new GridLayout(2, 3));
-		
+		// lamina_Cuadricula.setLayout(new GridLayout(2, 3));
+
 		JPanel lamina_Cuadricula = new JPanel(new GridLayout(2, 3));
 
-		
-
-		//creacion de las laminas con los radioButton y con bordes
+		// creacion de las laminas con los radioButton y con bordes
 
 		String primero[] = { "Mensaje", "Confirmar", "Opcion", "Entrada" };
 
-		lamina_Tipo = new V123_Lamina_Botones("Tipo", primero);
-		
-	
+		lamina_Tipo = new V123_Lamina_Botones("Tipo de Ventana", primero);
 
 		String segundo[] = { "ERROR_MESSAGE", "INFORMATION_MESSAGE", "WARNING_MESSAGE", "QUESTION_MESSAGE",
 				"PLAIN_MESSAGE" };
@@ -51,7 +48,6 @@ public class V123_Marco_dialogos extends JFrame {
 		String sexto[] = { "Campo de texto", "Combo" };
 
 		lamina_entrada = new V123_Lamina_Botones("Entrada", sexto);
-		
 
 		// añadiendo laminas a la lamina de cuadricula
 
@@ -66,8 +62,6 @@ public class V123_Marco_dialogos extends JFrame {
 		lamina_Cuadricula.add(lamina_opcion);
 
 		lamina_Cuadricula.add(lamina_entrada);
-		
-		
 
 		// contruimos la lamina inferior
 
@@ -76,34 +70,50 @@ public class V123_Marco_dialogos extends JFrame {
 		JPanel lamina_motrar = new JPanel();
 
 		JButton boton_mostrar = new JButton("Mostrar");
-		
+
 		boton_mostrar.addActionListener(new AccionMostrar());
 
 		lamina_motrar.add(boton_mostrar);
 
 		add(lamina_motrar, BorderLayout.SOUTH);
-		
-		
 
 		// añadiendo la lamina cuadricula al marco
 
 		add(lamina_Cuadricula, BorderLayout.CENTER);
+		
+		
 
 	}
 
-	
-	private class AccionMostrar implements ActionListener{
+	private class AccionMostrar implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-		System.out.println(lamina_Tipo.dameSeleccion());
-		
-			
+
+			// System.out.println(lamina_Tipo.dameSeleccion());
+
+			if (lamina_Tipo.dameSeleccion().equals("Mensaje")) {
+
+				//ventana emergentes
+				JOptionPane.showMessageDialog(V123_Marco_dialogos.this, "Mensaje", "Titulo", 0);
+
+			} else if (lamina_Tipo.dameSeleccion().equals("Confirmar")) {
+
+				JOptionPane.showConfirmDialog(V123_Marco_dialogos.this, "Mensaje", "Titulo", 0, 0);
+
+			} else if (lamina_Tipo.dameSeleccion().equals("Entrada")) {
+
+				JOptionPane.showInputDialog(V123_Marco_dialogos.this, "Mensaje", "Titulo", 0);
+
+			} else if (lamina_Tipo.dameSeleccion().equals("Opcion")) {
+
+				JOptionPane.showOptionDialog(V123_Marco_dialogos.this, "Mesaje", "Titulo", 0, 0, null, null, null);
+			}
+
 		}
-		
+
 	}
-	
+
 	private V123_Lamina_Botones lamina_Tipo, lamina_Tipo_mensaje, lamina_mensaje, lamina_confirmar, lamina_opcion,
 			lamina_entrada;
 
