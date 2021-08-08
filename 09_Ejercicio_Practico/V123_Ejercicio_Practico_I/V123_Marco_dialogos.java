@@ -1,10 +1,19 @@
 package V123_Ejercicio_Practico_I;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
+import java.util.Date;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -99,15 +108,23 @@ public class V123_Marco_dialogos extends JFrame {
 
 			} else if (lamina_Tipo.dameSeleccion().equals("Confirmar")) {
 
-				JOptionPane.showConfirmDialog(V123_Marco_dialogos.this, "Mensaje", "Titulo", 0, 0);
+				int datos=JOptionPane.showConfirmDialog(V123_Marco_dialogos.this, "Mensaje", "Titulo", 0, 0);
+				
+				System.out.println(datos);
+				
 
 			} else if (lamina_Tipo.dameSeleccion().equals("Entrada")) {
 
-				JOptionPane.showInputDialog(V123_Marco_dialogos.this, "Mensaje", "Titulo", 0);
+				String datos=JOptionPane.showInputDialog(V123_Marco_dialogos.this, "Mensaje", "Titulo", 0);
+				
+				System.out.println(datos);
 
 			} else if (lamina_Tipo.dameSeleccion().equals("Opcion")) {
 
-				JOptionPane.showOptionDialog(V123_Marco_dialogos.this, "Mesaje", "Titulo", 0, 0, null, null, null);
+				int datos=JOptionPane.showOptionDialog(V123_Marco_dialogos.this, "Mesaje", "Titulo", 0, 0, null, null, null);
+				
+				
+				System.out.println(datos);
 			}
 
 		}
@@ -116,5 +133,30 @@ public class V123_Marco_dialogos extends JFrame {
 
 	private V123_Lamina_Botones lamina_Tipo, lamina_Tipo_mensaje, lamina_mensaje, lamina_confirmar, lamina_opcion,
 			lamina_entrada;
+	
+	private String cadenaMensaje="mensaje";
+	
+	private Icon iconoMensaje= new ImageIcon("09_Ejercicio_Practico/V123_Ejercicio_Practico_I/azul.gif");
+	
+	private Object objetoMensaje=new Date();
+	
+	private Component ComponenteMensaje= new LaminaEjemplo();
+}
 
+
+class LaminaEjemplo extends JPanel{
+	
+	public void pintaComponente(Graphics g) {
+		
+		super.paintComponent(g);
+		
+		Graphics2D g2= (Graphics2D) g;
+		
+		Rectangle2D rectangulo = new Rectangle2D.Double(0,0,getWidth(),getHeight());
+		
+		g2.setPaint(Color.yellow);
+		
+		g2.fill(rectangulo);
+		
+	}
 }
