@@ -1,5 +1,9 @@
 package V123_Ejercicio_Practico_I;
 
+
+//Ejercicio terminado
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
