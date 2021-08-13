@@ -23,7 +23,7 @@ public class prueba {
 		
 		panel.setVisible(true);
 		
-		//fin
+		//fin 2
 	
 	}
 
