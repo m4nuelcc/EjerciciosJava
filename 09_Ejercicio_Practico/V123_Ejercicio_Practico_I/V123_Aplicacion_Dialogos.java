@@ -12,8 +12,10 @@ public class V123_Aplicacion_Dialogos {
 	miMarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	miMarco.setVisible(true);
+	
 	}
 
+	
 }
 
 
