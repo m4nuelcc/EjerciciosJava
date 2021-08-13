@@ -22,6 +22,8 @@ public class prueba {
 		panel.add(mensaje, BorderLayout.NORTH);
 		
 		panel.setVisible(true);
+		
+		//fin
 	
 	}
 
