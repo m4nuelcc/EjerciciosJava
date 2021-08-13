@@ -181,6 +181,7 @@ public class V123_Marco_dialogos extends JFrame {
 			return new Object[] {cadenaMensaje,ComponenteMensaje,objetoMensaje};
 		} else {
 
+			
 			return null;
 		}
 
