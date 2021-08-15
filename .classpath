@@ -15,5 +15,6 @@
 	<classpathentry kind="src" path="07_Disposiciones"/>
 	<classpathentry kind="src" path="08_Ventanas_Emergentes"/>
 	<classpathentry kind="src" path="09_Ejercicio_Practico"/>
+	<classpathentry kind="src" path="10_Excepciones"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
