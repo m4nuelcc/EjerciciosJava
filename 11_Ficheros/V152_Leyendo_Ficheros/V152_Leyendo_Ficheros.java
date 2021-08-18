@@ -1,4 +1,4 @@
-package V152_Acceso_A_Ficheros;
+package V152_Leyendo_Ficheros;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +30,9 @@ class Leer_Fichero {
 			// FileReader entrada = new
 			// FileReader("11_Ficheros/V152_Acceso_A_Ficheros/fichero.txt");
 
-			int c = entrada.read(); // lee el fichero y nos devuvleve caracter leido en ascii
+			//int c = entrada.read(); // lee el fichero y nos devuvleve caracter leido en ascii
+			
+			int c=0;
 
 			while (c != -1) { // devuelve -1 si es el fichal del fichero
 
@@ -41,6 +43,8 @@ class Leer_Fichero {
 				System.out.print(letra);
 			}
 
+			entrada.close(); //cerramos el flujo de datos
+			
 		} catch (IOException e) { // capturamos una excepcion mas generica para que englobe todos los errores
 									// controlados
 
