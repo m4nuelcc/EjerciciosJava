@@ -1,9 +1,7 @@
-package V157_Serializacion;
+package V158_SerialVersionUID;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import java.io.Serializable;
@@ -11,7 +9,7 @@ import java.util.*;
 
 
 
-public class V157_Serializando {
+public class V158_SerialVersionUID_Emisor {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,7 +20,7 @@ public class V157_Serializando {
 		jefe.setIncentivo(5000);
 		
 		
-		Empleado[] personal=new Empleado[4];
+		Empleado[] personal=new Empleado[3];
 		
 		personal[0]=jefe;
 		
@@ -30,19 +28,12 @@ public class V157_Serializando {
 		
 		personal[2]=new Empleado("Luis", 18000, 2012, 9,15);
 		
-		Administrador manu = new Administrador("Manuel", 20000,2021,12,10);
-		
-		personal[3] = manu;
-		
-		personal[3].subirSueldo(1000);
-		
-			
 		
 		try {
 			
 			// Serializamos Y guardamos en un fichero
 			
-			ObjectOutputStream fichero_salida = new ObjectOutputStream(new FileOutputStream("12_Serializacion/V157_Serializacion/FicheroSerializado.dat"));
+			ObjectOutputStream fichero_salida = new ObjectOutputStream(new FileOutputStream("12_Serializacion/V158_SerialVersionUID/FicheroSerializadoII.dat"));
 			
 			fichero_salida.writeObject(personal);
 			
@@ -51,17 +42,17 @@ public class V157_Serializando {
 			
 			//leemos fichero serializado lo guardamos en un array y lo leemos
 			
-			ObjectInputStream lecturaFichero = new ObjectInputStream(new FileInputStream("12_Serializacion/V157_Serializacion/FicheroSerializado.dat"));
-			
-			Empleado[] ficheroRecuperado = (Empleado[]) lecturaFichero.readObject();
-			
-			lecturaFichero.close();
-			
-			
-			for (Empleado empleado: ficheroRecuperado) {
-				
-				System.out.println(empleado);
-			}
+//			ObjectInputStream lecturaFichero = new ObjectInputStream(new FileInputStream("12_Serializacion/V158_SerialVersionUID/FicheroSerializadoII.dat"));
+//			
+//			Empleado[] ficheroRecuperado = (Empleado[]) lecturaFichero.readObject();
+//			
+//			lecturaFichero.close();
+//			
+//			
+//			for (Empleado empleado: ficheroRecuperado) {
+//				
+//				System.out.println(empleado);
+//			}
 			
 		} catch (Exception e) {
 			
@@ -78,6 +69,7 @@ class Empleado implements Serializable{
 	
 	
 	
+
 	/**
 	 * 
 	 */
@@ -142,6 +134,7 @@ class Empleado implements Serializable{
 class Administrador extends Empleado{
 	
 	
+
 
 		/**
 	 * 
