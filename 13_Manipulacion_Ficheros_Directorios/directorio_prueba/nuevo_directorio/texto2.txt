@@ -1,0 +1,1 @@
+y añadimos mas, y añadimos mas sin que se borre, gracias el true que puse en el constructor del FileWriter
