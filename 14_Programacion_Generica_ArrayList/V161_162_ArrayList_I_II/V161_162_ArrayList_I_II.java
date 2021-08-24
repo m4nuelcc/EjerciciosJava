@@ -1,6 +1,7 @@
+package V161_162_ArrayList_I_II;
 import java.util.ArrayList;
 
-public class V161_ArrayList_I {
+public class V161_162_ArrayList_I_II {
 
 	public static void main(String[] args) {
 
