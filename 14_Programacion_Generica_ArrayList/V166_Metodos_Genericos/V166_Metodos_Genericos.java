@@ -1,5 +1,8 @@
 package V166_Metodos_Genericos;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class V166_Metodos_Genericos {
 
 	public static void main(String[] args) {
@@ -9,11 +12,29 @@ public class V166_Metodos_Genericos {
 		System.out.println(MisMatrices.DimeElementos(numeroString));
 
 		Integer[] numerosInteger = { -1,1, 2, 2, 1, 2, 3, 12, 3, 1, 435, 7, 5, 54, 3443, 45, 3, 2 };
-
+		
+		
+		
+		Date fecha, fecha2;
+		
+		GregorianCalendar calendario = new GregorianCalendar(2021,12,11);
+		
+		fecha = calendario.getTime();
+		
+		fecha2 = new GregorianCalendar(1918,12,11).getTime();
+		
+		
+		
+		Date fechas[]= {fecha, fecha2, new GregorianCalendar(1902-1,12,11).getTime(),
+				new GregorianCalendar(1812-1,12,11).getTime()};
+		
+		
 		System.out.println(MisMatrices.DimeElementos(numerosInteger));
 		
 		System.out.println(MisMatrices.DimeElMenor(numerosInteger));
 
+		
+		System.out.println(MisMatrices.DimeElMenor(fechas));
 	}
 
 	static class MisMatrices {
