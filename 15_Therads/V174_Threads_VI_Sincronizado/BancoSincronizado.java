@@ -48,13 +48,21 @@ class Banco {
 		
 		if (cuentas[cuentaOrigen] < cantidad) {
 			
-			System.out.println(" error cuenta origen: "+ cuentas[cuentaOrigen] + " Cantidad "+ cantidad + " hilo  " + Thread.currentThread().getName());
+			
+			System.out.println(" ************ SALDO INSUFICIENTE ***************"+" Hilo " + Thread.currentThread().getName() + "\n");
+			System.out.println(" CUENTA: " + cuentaOrigen + " Tiene un saldo de:"+ cuentas[cuentaOrigen] 
+					+ " Cantidad: " + cantidad  + " En el hilo: " + Thread.currentThread().getName()+ "\n");
+			
+			
 
 			return;
 
+		}else {
+			
+			System.out.println("\n *******CANTIDAD OK****** CUENTA : " + cuentaOrigen + "hilo " + Thread.currentThread().getName()+ "\n");
 		}
 
-		System.out.println(Thread.currentThread().getName()); // hilo que va a realizar la transferencia
+		//System.out.println(Thread.currentThread().getName()); // hilo que va a realizar la transferencia
 
 		cuentas[cuentaOrigen] -= cantidad; // descontamo la cantidad de la transferencia
 
@@ -62,7 +70,7 @@ class Banco {
 
 		cuentas[cuentaDestino] += cantidad; // incrementeamos la cantidad de transferencia
 
-		System.out.printf("saldo total: %10.2f%n", getSaldoTotal());
+		System.out.printf("saldo total: %10.2f%n \n", getSaldoTotal());
 
 		}finally {
 			
