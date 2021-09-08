@@ -1,10 +1,10 @@
-package V176_Threads_VIII_BloqueoHilos_Con_Condiciones;
+package V176_Threads_VIII_BloqueoHilos_Con_Condiciones_Synchronized;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Banco_BloqueoHilos_ConCondiciones {
+public class Banco_BloqueoHilos_ConCondiciones_Synchronized {
 
 	public static void main(String[] args) {
 
@@ -36,38 +36,29 @@ class Banco {
 
 		}
 
-		saldosuficiente = cierraBanco.newCondition(); // el bloque se establece a una condicion saldosuficente
-
 	}
 
-	public void transferencia(int cuentaOrigen, int cuentaDestino, double cantidad) throws InterruptedException {
+	//con synchronized solo se puede evaluar una condicion es, un cierre implicito
+	
+	public synchronized void transferencia(int cuentaOrigen, int cuentaDestino, double cantidad)
+			throws InterruptedException {
 
-		cierraBanco.lock(); // bloquea el hilo que esta entre las llaves try catch
+		while (cuentas[cuentaOrigen] < cantidad) {
+			
+			wait(); //se pone a la espera si el while se cumple
 
-		try {
-
-			while (cuentas[cuentaOrigen] < cantidad) {
-
-				// return;
-
-				saldosuficiente.await(); // mientras se cumpla el while el hilo se mantiene a la espera
-
-			}
-
-			cuentas[cuentaOrigen] -= cantidad; // descontamo la cantidad de la transferencia
-
-			System.out.printf("%10.2f de %d para %d ", cantidad, cuentaOrigen, cuentaDestino);
-
-			cuentas[cuentaDestino] += cantidad; // incrementeamos la cantidad de transferencia
-
-			System.out.printf("saldo total: %10.2f%n \n", getSaldoTotal());
-
-			saldosuficiente.signalAll(); // despierta los hilos que estan a la espera a ver si pueden continuar
-
-		} finally { // de esta forma evitamos hilos que no hagan nada
-
-			cierraBanco.unlock();
 		}
+
+		cuentas[cuentaOrigen] -= cantidad; // descontamo la cantidad de la transferencia
+
+		System.out.printf("%10.2f de %d para %d ", cantidad, cuentaOrigen, cuentaDestino);
+
+		cuentas[cuentaDestino] += cantidad; // incrementeamos la cantidad de transferencia
+
+		System.out.printf("saldo total: %10.2f%n \n", getSaldoTotal());
+		
+		notifyAll(); //informa a todos los hilos que puedan esta a la espera y que se vuelva a revisar la condicion
+
 	}
 
 	public double getSaldoTotal() {
@@ -84,10 +75,6 @@ class Banco {
 	}
 
 	private final double cuentas[];
-
-	private Lock cierraBanco = new ReentrantLock();
-
-	private Condition saldosuficiente;
 
 }
 
