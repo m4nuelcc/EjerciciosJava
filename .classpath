@@ -21,5 +21,6 @@
 	<classpathentry kind="src" path="13_Manipulacion_Ficheros_Directorios"/>
 	<classpathentry kind="src" path="14_Programacion_Generica_ArrayList"/>
 	<classpathentry kind="src" path="15_Therads"/>
+	<classpathentry kind="src" path="16_Colecciones"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
