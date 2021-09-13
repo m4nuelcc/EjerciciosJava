@@ -3,7 +3,6 @@ package V187_TreeSet_II;
 import java.util.Comparator;
 import java.util.TreeSet;
 
-import V188_TreeSet_III.Articulo;
 
 public class V187_TreeSet_II {
 
