@@ -45,10 +45,23 @@ public class V188_TreeSet_III {
 			System.out.println(a.getindice() + " " + a.getNombre());
 		}
 
-		Articulo comparadorArticulo = new Articulo(); // Es para crear un objeto coparator
-
-		TreeSet<Articulo> ordenarticulo2 = new TreeSet<Articulo>(comparadorArticulo); // ordenanos por Nombre de la
-																						// Clase Articulo
+		
+	//	ComparadorArticulos compara_art = new ComparadorArticulos();
+		
+		TreeSet<Articulo> ordenarticulo2 = new TreeSet<Articulo>(new Comparator<Articulo>() { 
+			
+			//Utilizacion de clase interna.
+			
+			public int compare(Articulo o1, Articulo o2) {
+				
+				String desc1 = o1.getNombre();
+				
+				String desc2 = o2.getNombre();
+				
+				return desc1.compareTo(desc2);
+			}
+			
+		});
 		
 		ordenarticulo2.add(lista4);
 		ordenarticulo2.add(lista3);
@@ -69,11 +82,9 @@ public class V188_TreeSet_III {
 
 //creacion de la clase Aticulo implementando Comparable para que ordene por indice
 
-class Articulo implements Comparable<Articulo>, Comparator<Articulo> {
+class Articulo implements Comparable<Articulo>{
 
-	public Articulo() {
-	};
-
+	
 	public Articulo(int indice, String nombre) {
 
 		this.indice = indice;
@@ -100,15 +111,23 @@ class Articulo implements Comparable<Articulo>, Comparator<Articulo> {
 
 	private String nombre;
 
-	@Override
-
-	public int compare(Articulo o1, Articulo o2) {
-
-		String descripcionA = o1.getNombre();
-
-		String descripcionB = o2.getNombre();
-
-		return descripcionA.compareTo(descripcionB); // compara los dos objetos
-	}
-
+	
 }
+
+
+//class ComparadorArticulos implements Comparator<Articulo>{   //clase para comparar
+
+//la comenteamos porque hemos creado una clase interna
+//
+//	@Override
+//	public int compare(Articulo o1, Articulo o2) {
+//	
+//		String desc1 = o1.getNombre();
+//		
+//		String desc2 = o2.getNombre();
+//		
+//		return desc1.compareTo(desc2);
+//	}
+//	
+//	
+//}
