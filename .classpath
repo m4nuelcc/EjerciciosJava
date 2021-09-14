@@ -22,5 +22,6 @@
 	<classpathentry kind="src" path="14_Programacion_Generica_ArrayList"/>
 	<classpathentry kind="src" path="15_Therads"/>
 	<classpathentry kind="src" path="16_Colecciones"/>
+	<classpathentry kind="src" path="Sockets"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
