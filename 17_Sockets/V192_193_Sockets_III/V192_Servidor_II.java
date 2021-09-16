@@ -1,4 +1,4 @@
-package V192_Sockets_III;
+package V192_193_Sockets_III;
 
 
 
@@ -61,13 +61,13 @@ class MarcoServidor extends JFrame implements Runnable {
 			
 			String nick, ip, mensaje;
 			
-			PaqueteEnvio paqueteRecibido = new PaqueteEnvio();
+			PaqueteEnvio paqueteRecibido = new PaqueteEnvio();  //instanciamos la clase paqueteenvio
 			
 			while(true) {
 			
-			Socket miSocket = servidor.accept();  //poner a la escucha
+			Socket miSocket2 = servidor.accept();  //poner a la escucha
 			
-			ObjectInputStream paqueteDatos = new ObjectInputStream(miSocket.getInputStream());
+			ObjectInputStream paqueteDatos = new ObjectInputStream(miSocket2.getInputStream());
 				
 			paqueteRecibido = (PaqueteEnvio) paqueteDatos.readObject();
 			
@@ -79,7 +79,7 @@ class MarcoServidor extends JFrame implements Runnable {
 			
 			areatexto.append("\n" + nick + ": " + mensaje + " para "+ ip);
 			
-			miSocket.close();
+			miSocket2.close();
 		
 			
 			}
