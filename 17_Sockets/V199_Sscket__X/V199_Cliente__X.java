@@ -1,4 +1,4 @@
-package V199_Sockets_X;
+package V199_Sscket__X;
 
 
 
@@ -7,21 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
-import java.lang.System.Logger;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import javax.swing.*;
 
-public class V199_Cliente_X {
+public class V199_Cliente__X {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -177,9 +173,9 @@ class LaminaMarcoCliente extends JPanel  implements Runnable{
 				campochat.append("\n" + paqueteRecibido.getNick()+ ": " + paqueteRecibido.getMensaje());
 				
 				
+				//servidorCliente.close();
 				
 			}
-			
 			
 			
 		} catch (IOException | ClassNotFoundException e) {

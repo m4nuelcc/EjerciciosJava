@@ -3,7 +3,6 @@ package V197_Sockets_VII;
 import javax.swing.*;
 
 import java.awt.*;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -104,6 +103,7 @@ class MarcoServidor extends JFrame implements Runnable {
 					enviaDestinatario.close();
 
 					miSocket.close();
+					misoket.close();
 
 				}else {
 					// ---------------DETECTA CLIENTES ONLINE-------------------

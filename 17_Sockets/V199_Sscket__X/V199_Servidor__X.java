@@ -1,9 +1,8 @@
-package V199_Sockets_X;
+package V199_Sscket__X;
 
 import javax.swing.*;
 
 import java.awt.*;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -11,7 +10,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class V199_Servidor_X {
+public class V199_Servidor__X {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
