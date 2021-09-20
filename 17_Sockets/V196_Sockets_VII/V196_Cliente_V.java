@@ -1,4 +1,6 @@
-package V196_Sockets_V.copy;
+package V196_Sockets_VII;
+
+
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -31,7 +33,7 @@ public class V196_Cliente_V {
 
 }
 
-class MarcoCliente extends JFrame {
+class MarcoCliente extends JFrame  {
 
 	public MarcoCliente() {
 
