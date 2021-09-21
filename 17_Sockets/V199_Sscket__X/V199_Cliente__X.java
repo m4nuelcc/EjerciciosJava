@@ -1,7 +1,5 @@
 package V199_Sscket__X;
 
-
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +12,7 @@ import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -22,8 +21,6 @@ public class V199_Cliente__X {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		
-		
 		MarcoCliente mimarco = new MarcoCliente();
 
 		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +29,7 @@ public class V199_Cliente__X {
 
 }
 
-class MarcoCliente extends JFrame  {
+class MarcoCliente extends JFrame {
 
 	public MarcoCliente() {
 
@@ -45,7 +42,7 @@ class MarcoCliente extends JFrame  {
 		setResizable(false);
 
 		setVisible(true);
-		
+
 		addWindowListener(new EnvioOnline());
 	}
 
@@ -53,81 +50,75 @@ class MarcoCliente extends JFrame  {
 
 //--------------------ENVIO SEÑAL ONLINE--------------------------------
 
-class EnvioOnline extends WindowAdapter{
-	
+class EnvioOnline extends WindowAdapter {
+
 	public void windowOpened(WindowEvent e) {
-		
+
 		try {
 			Socket miSocket = new Socket("192.168.1.38", 5000);
-					
-			PaqueteEnvio datos = new PaqueteEnvio(); //creo paquete tipo paqueteenvio
-			
+
+			PaqueteEnvio datos = new PaqueteEnvio(); // creo paquete tipo paqueteenvio
+
 			datos.setMensaje(" online");
-			
+
 			ObjectOutputStream paqueteDatos = new ObjectOutputStream(miSocket.getOutputStream());
-			
+
 			paqueteDatos.writeObject(datos);
-			
+
 			miSocket.close();
-			
+
 		} catch (IOException e1) {
-			
+
 			e1.printStackTrace();
 		}
-		
+
 	}
-//---------------------------------------------------------------------------------	
-	
+
 }
 
+//---------------------------------------------------------------------------------	
 
-
-class LaminaMarcoCliente extends JPanel  implements Runnable{
+class LaminaMarcoCliente extends JPanel implements Runnable {
 
 	public LaminaMarcoCliente() {
-		
-		
-		//PETICION DEL NICK DEL USUARIO
-		
-		String nombre =  JOptionPane.showInputDialog("Introduzca nick");
+
+		// PETICION DEL NICK DEL USUARIO
+
+		String nombre = JOptionPane.showInputDialog("Introduzca nick");
 
 		camponick = new JLabel(nombre);
 
 		add(camponick);
-	
 
 		JLabel texto = new JLabel("    Online");
 
 		add(texto);
-		
-		//LISTA DESPLEGABLE CON LAS IPS DE HOST CONECTADOS
 
-		//campoIP = new JTextField(8);
-		
+		// LISTA DESPLEGABLE CON LAS IPS DE HOST CONECTADOS
+
+		// campoIP = new JTextField(8);
+
 		campoIP = new JComboBox();
-		
-		campoIP.addItem("192.168.1.60");
-		
-		campoIP.addItem("192.168.1.97");
-		
-		campoIP.addItem("192.168.1.38");
+
+//		campoIP.addItem("192.168.1.60");
+//
+//		campoIP.addItem("192.168.1.97");
+//
+//		campoIP.addItem("192.168.1.38");
 
 		add(campoIP);
 
-		
-		//AREA DE TEXTO DONDE SE ESCRIBE LA CONVERSACION
-		
+		// AREA DE TEXTO DONDE SE ESCRIBE LA CONVERSACION
+
 		campochat = new JTextArea(12, 20);
 
 		add(campochat);
-		
-		
-		//CAMPO DONDE ESCRIBIMOS NUESTROS MENSAJES A MANDAR
-		
+
+		// CAMPO DONDE ESCRIBIMOS NUESTROS MENSAJES A MANDAR
+
 		campo1 = new JTextField(20);
 
 		add(campo1);
-		
 
 		miboton = new JButton("Enviar");
 
@@ -138,52 +129,70 @@ class LaminaMarcoCliente extends JPanel  implements Runnable{
 		// miboton.addActionListener(new EnviaTexto()); //tambien se puede hacer
 
 		add(miboton);
-		
-		Thread hilo1 = new Thread(this); //this porque es la propia clase que tien el hilo
-		
-		hilo1.start();                   //si el hilo estuviera en otra clase tendria que crear una instacia
-		
-		
+
+		Thread hilo1 = new Thread(this); // this porque es la propia clase que tien el hilo
+
+		hilo1.start(); // si el hilo estuviera en otra clase tendria que crear una instacia
 
 	}
-	
-	
-	
-	// metodo del Runnable  (hilos) para poner en escucha un servidor
+
+	// metodo del Runnable (hilos) para poner en escucha un servidor
 	@Override
 	public void run() {
-		
+
 		try {
-			//servidorSocket escuchado por el puerto 9000 del cliente
-			
+			// servidorSocket escuchado por el puerto 9000 al servidor
+
 			ServerSocket servidorCliente = new ServerSocket(9090);
-			
+
 			Socket cliente;
-			
+
 			PaqueteEnvio paqueteRecibido;
-			
+
 			while (true) {
-				
-				cliente=servidorCliente.accept();
-				
+
+				cliente = servidorCliente.accept();
+
 				ObjectInputStream flujoEntrada = new ObjectInputStream(cliente.getInputStream());
-				
+
 				paqueteRecibido = (PaqueteEnvio) flujoEntrada.readObject();
 				
-				campochat.append("\n" + paqueteRecibido.getNick()+ ": " + paqueteRecibido.getMensaje());
+				if(!paqueteRecibido.getMensaje().equals(" online")) {
+					
+					campochat.append("\n" + paqueteRecibido.getNick() + ": " + paqueteRecibido.getMensaje());
+
+				}else {
+					
+					//campochat.append("\n listas" + paqueteRecibido.getListaIps());
+					
+					
+					ArrayList<String> IpMenu = new ArrayList<String>();
+					
+					IpMenu = paqueteRecibido.getListaIps();
+					
+					campoIP.removeAllItems(); //borramos todos los items para que no acumulen
+					
+					for (String ip: IpMenu) {
+					
+						
+						campoIP.addItem(ip);
+					}
 				
-				
-				//servidorCliente.close();
-				
+					
+					
+
+				}
+
+
+
 			}
-			
-			
+
 		} catch (IOException | ClassNotFoundException e) {
-			
+
 			System.out.println(e.getMessage());
-		
+
 		}
-		
+
 	}
 
 	class EnviaTexto implements ActionListener { // clase interna escucha boton y recoge datos de campo1
@@ -191,47 +200,41 @@ class LaminaMarcoCliente extends JPanel  implements Runnable{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-		
-			//añadimos al areatext lo que escribe el cliente para ver toda la conversacion
-			
+			// añadimos al areatext lo que escribe el cliente para ver toda la conversacion
+
 			campochat.setForeground(Color.blue);
-			
+
 			campochat.append("\n Yo: " + campo1.getText());
-			
-		try {
-		
-			//Envio de datos
+
+			try {
+
+				// Envio de datos
 
 				Socket misocket = new Socket("192.168.1.38", 5000);
 
 				PaqueteEnvio datos = new PaqueteEnvio();
 
-				//guardamos los valores de los campos de los JTextArea
-				//y JTextField a los atributos de la clase PaqueteEnvio
+				// guardamos los valores de los campos de los JTextArea
+				// y JTextField a los atributos de la clase PaqueteEnvio
 				// y lo tenermos empaquetado en datos
-				
-				datos.setNick(camponick.getText()); 
-				
-				//datos.setIp(campoIP.getText());
-				datos.setIp(campoIP.getSelectedItem().toString());
-				
-				datos.setMensaje(campo1.getText());
-				
-				//utilizamos ObjectOutPutStream porque es un objeto
-				
-				ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
-				
-				
-				paquete_datos.writeObject(datos);
-				
-				misocket.close();
-				
-				//una vez enviado el mensaje lo borramos para volver a escribir
-				
-				campo1.setText(""); 
-				
-				
 
+				datos.setNick(camponick.getText());
+
+				datos.setIp(campoIP.getSelectedItem().toString());
+
+				datos.setMensaje(campo1.getText());
+
+				// utilizamos ObjectOutPutStream porque es un objeto
+
+				ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
+
+				paquete_datos.writeObject(datos);
+
+				misocket.close();
+
+				// una vez enviado el mensaje lo borramos para volver a escribir
+
+				campo1.setText("");
 
 			} catch (UnknownHostException e1) {
 
@@ -249,22 +252,25 @@ class LaminaMarcoCliente extends JPanel  implements Runnable{
 	}
 
 	private JTextField campo1;
-	
+
 	private JComboBox campoIP;
-	
+
 	private JLabel camponick;
 
 	private JButton miboton;
 
 	private JTextArea campochat;
 
-
-
 }
 
 //--------------CLASE QUE UTILIZO PARA CREAR UN OBJETO PARA LUEGO ENVIAR TODO JUNTO---------
 
-class PaqueteEnvio implements Serializable{
+class PaqueteEnvio implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public String getNick() {
 		return nick;
@@ -290,7 +296,21 @@ class PaqueteEnvio implements Serializable{
 		this.mensaje = mensaje;
 	}
 
+
+
+	public ArrayList<String> getListaIps() {
+		return ListaIps;
+	}
+
+	public void setListaIps(ArrayList<String> listaIps) {
+		ListaIps = listaIps;
+	}
+
+
+
 	private String nick, ip, mensaje;
+
+	private ArrayList<String> ListaIps;
 }
 
 //CLASE PARA OBTENER LA IP DEL EQUIPO
@@ -303,5 +323,3 @@ class PaqueteEnvio implements Serializable{
 //		return ip.getHostAddress();
 //	}
 //}
-
-

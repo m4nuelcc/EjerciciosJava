@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class V199_Servidor__X {
 
@@ -55,6 +56,8 @@ class MarcoServidor extends JFrame implements Runnable {
 
 			// --------------SERVIDOR EN ESCUCHA PRA RECIBIR DATOS---------------
 
+			ArrayList<String> ArraysIps = new ArrayList<String>(); // guardamos las ips
+
 			ServerSocket misoket = new ServerSocket(5000); // pone el servidor en escucha
 
 			String nick, ip, mensaje;
@@ -65,28 +68,25 @@ class MarcoServidor extends JFrame implements Runnable {
 
 				Socket miSocket = misoket.accept(); // poner a la escucha
 
+				ObjectInputStream paqueteDatos = new ObjectInputStream(miSocket.getInputStream());
 
-					ObjectInputStream paqueteDatos = new ObjectInputStream(miSocket.getInputStream());
+				paqueteRecibido = (PaqueteEnvio) paqueteDatos.readObject();
 
-					paqueteRecibido = (PaqueteEnvio) paqueteDatos.readObject();
+				nick = paqueteRecibido.getNick();
 
-					nick = paqueteRecibido.getNick();
+				ip = paqueteRecibido.getIp();
 
-					ip = paqueteRecibido.getIp();
+				mensaje = paqueteRecibido.getMensaje();
 
-					mensaje = paqueteRecibido.getMensaje();
+				if (!mensaje.equals(" online")) { // para saber que se abre la ventana por primera vez
 
-					if (!mensaje.equals(" online")) {  //para saber que se abre la ventana por primera vez
-						
 					areatexto.append("\n" + nick + ": " + mensaje + " para " + ip);
 
-					// ------------SERVIDOR ENVIA DATOS A
-					// DESTINATARIO---------------------------------------
+					// ------------SERVIDOR ENVIA DATOS A DESTINATARIO----------
 
 					Socket enviaDestinatario = new Socket(ip, 9090);
 
-					// -----------creacion objeto "paqueteReenvio" para
-					// enviar-------------------------------
+					// ------creacion objeto "paqueteReenvio" para enviar-------
 
 					ObjectOutputStream paqueteReenvio = new ObjectOutputStream(enviaDestinatario.getOutputStream());
 
@@ -95,8 +95,7 @@ class MarcoServidor extends JFrame implements Runnable {
 
 					paqueteReenvio.writeObject(paqueteRecibido);
 
-					// ---------------------CERRAR LOS
-					// SOCKETS-----------------------------------------------
+					// ---------------------CERRAR LOS SOCKETS------------------
 
 					paqueteReenvio.close();
 
@@ -104,16 +103,39 @@ class MarcoServidor extends JFrame implements Runnable {
 
 					miSocket.close();
 
-				}else {
+				} else {
 					// ---------------DETECTA CLIENTES ONLINE-------------------
-
+					//-----------Y LAS GUARDAMOS EN UN ARRAYLIST---------------
+					
 					InetAddress localizacion = miSocket.getInetAddress();
 
 					String IpRemota = localizacion.getHostAddress();
 
-					System.out.println("online " + IpRemota);
+					//ArraysIps.removeAll(ArraysIps);
 
-					// ---------------------------------------------------------
+					ArraysIps.add(IpRemota);
+
+					paqueteRecibido.setListaIps(ArraysIps);
+					
+					//ENVIAMOS EL paquetereembio  A TODAS LAS IPS DEL ARRAY-----
+
+					for (String a : ArraysIps) {
+
+						Socket enviaDestinatario = new Socket(a, 9090);
+
+						ObjectOutputStream paqueteReenvio = new ObjectOutputStream(enviaDestinatario.getOutputStream());
+
+						paqueteReenvio.writeObject(paqueteRecibido);
+
+						paqueteReenvio.close();
+
+						enviaDestinatario.close();
+
+						miSocket.close();
+
+					}
+					
+					//----------------------------------------------------------
 				}
 			}
 
