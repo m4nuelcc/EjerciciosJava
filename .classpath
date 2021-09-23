@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-15">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" path="02_Poo"/>
 	<classpathentry kind="src" path="03_graficos"/>
 	<classpathentry kind="src" path="01_ProgramacionBasica"/>
@@ -23,5 +18,12 @@
 	<classpathentry kind="src" path="15_Therads"/>
 	<classpathentry kind="src" path="16_Colecciones"/>
 	<classpathentry kind="src" path="17_Sockets"/>
+	<classpathentry kind="src" path="18_BBDD_JDBC"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-15">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Manu/Downloads/mysql-connector-java-5.1.38-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
