@@ -12,7 +12,7 @@ public class V220_SIN_TRANSACIONES_BBDD {
 			
 			Statement miStatement =miConexion.createStatement();
 			
-		    String instruccionSql_1="INSERT INTO clientes (CODIGOCLIENTE, EMPRESA, DIRECCION) VALUES ('CT84', 'EJEMPLO', 'P BOTANICO')";
+		    String instruccionSql_1="INSERT INTO clientes (CODIGOCLIENTE, EMPRESA, DIRECCION) VALUES ('CT84', 'EJEMPLO', 'PAATATAAAS')";
 			    
 		    miStatement.executeUpdate(instruccionSql_1);
 			    
