@@ -22,6 +22,7 @@
 	<classpathentry kind="src" path="19_MVC_JDBC"/>
 	<classpathentry kind="src" path="20_PROCEDIMIENTOS_ALMACENADOS"/>
 	<classpathentry kind="src" path="21_TRANSACIONES_BBDD"/>
+	<classpathentry kind="src" path="22_METADATOS"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-15">
 		<attributes>
 			<attribute name="module" value="true"/>
