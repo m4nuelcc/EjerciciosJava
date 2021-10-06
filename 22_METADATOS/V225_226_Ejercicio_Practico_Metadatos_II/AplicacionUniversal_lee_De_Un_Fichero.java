@@ -1,16 +1,14 @@
-package V224_Ejercicio_Practico_Metadatos;
+package V225_226_Ejercicio_Practico_Metadatos_II;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
-import com.mysql.fabric.xmlrpc.base.Array;
-
-public class AplicacionUniversal {
+public class AplicacionUniversal_lee_De_Un_Fichero {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -52,7 +50,6 @@ class LaminaBBDD extends JPanel {
 		add(areaInformacion, BorderLayout.CENTER);
 
 		add(comboTablas, BorderLayout.NORTH);
-
 
 		conexionBBDD();
 
@@ -120,34 +117,16 @@ class LaminaBBDD extends JPanel {
 
 	}
 
-	
-
 	public void conexionBBDD() {
 
 		miConexion = null;
-		
-		String[] datoslectura = new String[3];
 
 		try {
-			
-			FileReader leerDatosBBDD = new FileReader("22_METADATOS/V225_Ejercicio_Practico_Metadatos_II/DatosBBDD.txt");
-			
-			BufferedReader datosBBDD = new BufferedReader(leerDatosBBDD);
-			
-			for (int i=0; i<datoslectura.length; i++) {
-				
-				datoslectura[i]= datosBBDD.readLine();
-			}
-			
-			
-			miConexion = DriverManager.getConnection(datoslectura[0], datoslectura[1], datoslectura[2]);
 
-//			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pruebas?useSSL=false", "root",
-//					"root");
+			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pruebas?useSSL=false", "root",
+					"root");
 
-		} catch (SQLException | IOException e) {
-			
-			JOptionPane.showMessageDialog(null, "No se controntro fichero de configuracion BBDD");
+		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
