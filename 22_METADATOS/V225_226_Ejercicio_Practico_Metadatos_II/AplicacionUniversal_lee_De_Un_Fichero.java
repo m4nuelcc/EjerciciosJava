@@ -2,7 +2,10 @@ package V225_226_Ejercicio_Practico_Metadatos_II;
 
 import java.awt.*;
 import java.awt.event.*;
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -120,14 +123,40 @@ class LaminaBBDD extends JPanel {
 	public void conexionBBDD() {
 
 		miConexion = null;
+		
+		FileReader lecturaDDBB= null;
+		
+		BufferedReader bufferBBDD = null;
+		
+		String[] datosconexion = new String[3];
+		
+		
 
 		try {
+			 lecturaDDBB = new FileReader("22_METADATOS/V225_226_Ejercicio_Practico_Metadatos_II/DatosBBDD.txt");
+			
+			 bufferBBDD = new BufferedReader(lecturaDDBB);
+			 
+			 for (int i=0; i<datosconexion.length; i++) {
+				 
+				 datosconexion[i]= bufferBBDD.readLine();
+			 }
+			 
+			 
+			 miConexion = DriverManager.getConnection(datosconexion[0],datosconexion[1],datosconexion[2]);
 
-			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pruebas?useSSL=false", "root",
-					"root");
+//			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pruebas?useSSL=false", "root",
+//					"root");
 
+		} catch (IOException e) {
+			
+			JOptionPane.showMessageDialog(this,"No se encontro fichero de configuración");
+			
+			e.printStackTrace();
+			
 		} catch (SQLException e) {
-
+			
+			JOptionPane.showMessageDialog(this,"Datos de conexión Erroneos");
 			e.printStackTrace();
 		}
 
